@@ -45,7 +45,7 @@ module Docsplit
 
     # Does a PDF have any text embedded?
     def contains_text?(pdf)
-      fonts = `pdffonts #{ESCAPE[pdf]} 2>&1`
+      fonts = `pdffonts #{ESCAPE[pdf]} 2>&1`.encode('utf-8', 'utf-8')
       !fonts.match(NO_TEXT_DETECTED)
     end
 
