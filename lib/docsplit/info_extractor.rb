@@ -19,7 +19,7 @@ module Docsplit
     def extract(key, pdfs, opts)
       pdf = [pdfs].flatten.first
       cmd = "pdfinfo #{ESCAPE[pdf]} 2>&1"
-      result = `#{cmd}`.chomp
+      result = `#{cmd}`.chomp.encoding('utf-8', 'utf-8')
       raise ExtractionFailed, result if $? != 0
       match = result.match(MATCHERS[key])
       answer = match && match[1]
